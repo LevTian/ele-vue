@@ -5,6 +5,7 @@ import store from './store'
 
 import "@/assets/styles/reset.css"
 import "@/assets/styles/border.css"
+import "@/common/stylus/icon.styl"
 
 Vue.config.productionTip = false
 
