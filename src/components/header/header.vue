@@ -17,18 +17,26 @@
                     <span class="text">{{ seller.supports[0].description }}</span>
                 </div>
             </div>
-            <div class="support-count" v-if="seller.supports">
+            <div class="support-count" v-if="seller.supports" @click="showDetail">
                 <span class="count">{{ seller.supports.length }}个</span>
                 <span class="icon-keyboard_arrow_right"></span>
             </div>
         </div>
-        <div class="bulletin-wrapper">
+        <div class="bulletin-wrapper" @click="showDetail">
             <span class="bulletin-icon"></span>
             <span class="bulletin-text">{{ seller.bulletin }}</span>
             <span class="icon-keyboard_arrow_right"></span>
         </div>
         <div class="background">
             <img :src="seller.avatar" width="100%" height="100%"/>
+        </div>
+        <div class="detail" v-show="detailShow">
+            <div class="detail-wrapper">
+                <div class="detail-content"></div>
+            </div>
+            <div class="detail-footer">
+                <span class="icon-close"></span>
+            </div>
         </div>
     </div>
 </template>
@@ -38,11 +46,16 @@ export default {
     name : "Header",
     data() {
         return {
-
+            detailShow : false
         }
     },
     props: {
         seller : Object
+    },
+    methods : {
+        showDetail() {
+            this.detailShow = true;
+        }
     },
     created() {
         this.classMap = ["decrease", "discount", "special", "invoice", "guarantee"];
@@ -170,7 +183,24 @@ export default {
             width : 100%
             height : 100%
             filter : blur(.1rem)
-
+        .detail
+            position : fixed
+            left : 0
+            top : 0
+            z-index : 100
+            width : 100%
+            height : 100%
+            overflow : auto 
+            background : rgba(7, 17, 27, 0.8)
+            .detail-wrapper
+                min-height : 100%
+                .detail-content
+                    padding-bottom : 1.28rem
+            .detail-footer
+                margin-top : -1.28rem
+                .icon-close
+                    font-size : .64rem
+                    color : #ffffff
 
 
                 
