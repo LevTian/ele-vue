@@ -2,7 +2,7 @@
     <div class="header">
         <div class="content-wrapper">
             <div class="avatar">
-                <img width="128" height="128" :src="seller.avatar" />
+                <img :src="seller.avatar" />
             </div>
             <div class="content">
                 <div class="title">
@@ -22,8 +22,14 @@
                 <span class="icon-keyboard_arrow_right"></span>
             </div>
         </div>
-        <div class="bulletin-wrapper"></div>
-        
+        <div class="bulletin-wrapper">
+            <span class="bulletin-icon"></span>
+            <span class="bulletin-text">{{ seller.bulletin }}</span>
+            <span class="icon-keyboard_arrow_right"></span>
+        </div>
+        <div class="background">
+            <img :src="seller.avatar" width="100%" height="100%"/>
+        </div>
     </div>
 </template>
 
@@ -48,13 +54,17 @@ export default {
     @import "../../common/stylus/mixin.styl"
 
     .header
-        color : #999999
-        background : #cccccc
+        position : relative
+        color : #ffffff
+        background : rgba(7, 17, 27, 0.5)
+        overflow : hidden  // 模糊效果会影响超出部分
         .content-wrapper
             position : relative
             padding : .48rem .24rem .36rem .48rem
+            color : #ffffff
             .avatar
                 display : inline-block
+                border-radius : .04rem
                 vertical-align : top
                 img 
                     width : 1.28rem
@@ -81,7 +91,7 @@ export default {
                     margin-bottom : .2rem
                     font-size : .24rem
                     font-weight : 200
-                    line-height : 24px
+                    line-height : .24rem
                 .support
                     .icon
                         display : inline-block
@@ -107,7 +117,7 @@ export default {
                         font-weight : 200
             .support-count  
                 position : absolute
-                bottom : .32rem
+                bottom : .36rem
                 right : .24rem
                 padding : 0 .16rem
                 height : .48rem
@@ -121,8 +131,52 @@ export default {
                     margin-left : .04rem
                     line-height : .24rem
                     font-size : .2rem
+        .bulletin-wrapper
+            position : relative
+            height : .56rem
+            line-height : .56rem
+            padding : 0 .24rem
+            background-color : rgba(7, 17, 27, 0.2)
+            color : #ffffff
+            overflow : hidden
+            text-overflow : ellipsis  
+            white-space : nowrap  
+            .bulletin-icon
+                display : inline-block
+                width : .44rem
+                height : .24rem
+                margin-right : .08rem
+                vertical-align : top
+                margin-top : .16rem
+                bg-image("images/bulletin")
+                background-size : .44rem .24rem
+                background-repeat : no-repeat
+            .bulletin-text
+                font-size : .2rem
+                font-weight : 200
+                vertical-align : top
+            .icon-keyboard_arrow_right
+                position : absolute 
+                right : .24rem
+                top : .18rem
+                margin-left : .08rem
+                line-height : .24rem
+                font-size : .2rem
+        .background
+            position : absolute 
+            left : 0
+            top : 0
+            z-index : -1
+            width : 100%
+            height : 100%
+            filter : blur(.1rem)
+
+
+
                 
                     
+
+
 
 
 
